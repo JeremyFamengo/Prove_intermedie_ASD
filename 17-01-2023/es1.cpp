@@ -10,38 +10,6 @@ struct Node{
 
 typedef Node* PNode;
 
-
-//int aux(PNode u){
-//    if(u==nullptr){
-//        return 0;
-//    }
-//
-//    else{
-//        int rissx,risdx;
-//        rissx=aux(u->left);
-//        risdx=aux(u->right);
-//        if((rissx==-1 || risdx!=-1)&& u->right!=nullptr && u->left!=nullptr && rissx!=risdx) {
-//            return -1;
-//        }
-//
-//        int ris;
-//        if(u->left == nullptr){
-//            ris=risdx;
-//        }
-//        else{
-//            ris=rissx;
-//        }
-//
-//        if(u->key=='B');
-//        return ris;
-//
-//
-//    }
-//}
-/**
- *
- *
- * */
 int blackHeight(PNode u){
     if(u==nullptr){
         return 0;
