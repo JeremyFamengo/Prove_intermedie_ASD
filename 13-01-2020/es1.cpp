@@ -1,41 +1,39 @@
 #include "iostream"
 using namespace std;
 
-struct Tree{
+struct Node{
     int k;
-    Tree* left;
-    Tree* right;
+    Node* left;
+    Node* right;
 };
 
-typedef Tree* PTree;
+struct Tree{
+    Node* root;
+};
 
-void antenato_aux(PTree antenato, int k1, int k2, bool& bk1, bool& bk2, bool& res){
-    if(antenato)return;
-    if(antenato->k==k1)bk1=true;
-    else if(antenato->k==k2)bk2=true;
 
-    if(!bk1 && bk2){
-        res=false;
-        return;
+bool antenato(Tree antenato, int k1, int k2){
+    bool find_k1=false, find_k2=false;
+    Node* u=antenato.root;
+    while(u && !find_k2){
+        if(!find_k1){
+            if(u->k==k1)find_k1=true;
+            else if (k1<u->k)u=u->left;
+            else u=u->right;
+        }else{
+            if(u->k==k2)find_k2=true;
+            else if (k2<u->k)u=u->left;
+            else u=u->right;
+        }
     }
-
-    antenato_aux(antenato->left,k1, k2, bk1, bk2, res);
-    antenato_aux(antenato->right,k1, k2, bk1, bk2, res);
-
-}
-
-bool antenato(PTree antenato, int k1, int k2){
-    bool bk1=false, bk2=false,  res=true;
-
-    antenato_aux(antenato,k1, k2, bk1, bk2, res);
-
-    return res;
+    return find_k2;
 }
 
 int main(){
-    PTree root = new Tree{1, new Tree{2, nullptr, nullptr}, new Tree{3, nullptr, nullptr}};
+    Tree radice;
+    radice.root = new Node{5, new Node{2, nullptr, nullptr}, new Node{6, nullptr, nullptr}};
 
-    cout<<"antenato? "<< antenato(root,1234567890,76);
+    cout<<"antenato? "<< antenato(radice,6,5);
 
 
     return 0;
