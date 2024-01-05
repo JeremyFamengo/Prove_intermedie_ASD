@@ -24,7 +24,7 @@ int blackHeight(PNode u){
 
     if(u->col=='B')res++;
 
-    if(u->right && u->left && rsx != rdx)return -1;
+    if(rsx==-1 || rdx==-1 ||  u->right && u->left && rsx != rdx)return -1;
 
     return res;
 }
