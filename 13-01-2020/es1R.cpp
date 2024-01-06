@@ -26,8 +26,8 @@ void antenatoAux(PNode u, int k1, bool& tk1, int k2, bool& tk2, bool& res){
         return;
     }
 
-    antenatoAux(u->left,k1,tk1,k2,tk2,res);
-    antenatoAux(u->right,k1,tk1,k2,tk2,res);
+    if(k1<u->key)antenatoAux(u->left,k1,tk1,k2,tk2,res);
+    if(u->key<k2)antenatoAux(u->right,k1,tk1,k2,tk2,res);
 }
 
 
