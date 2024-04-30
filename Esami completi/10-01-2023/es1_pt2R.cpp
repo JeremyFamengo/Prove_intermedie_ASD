@@ -17,7 +17,7 @@ int k_compreso_aux(PNode u, int k, bool& res){
     int sumsx= k_compreso_aux(u->left,k,res);
     int sumdx= k_compreso_aux(u->right,k,res);
     int sum=u->key+sumsx+sumdx;
-    if(!(-k<sum && sum<k))res=false;
+    if(!(-k<=sum && sum<=k))res=false;
     return sum;
 }
 
@@ -35,7 +35,7 @@ int main() {
     root->left->left = new Node(4);
     root->left->right = new Node(5);
 
-    int k = 10;
+    int k = 15;
     if (k_compreso(root, k))
         std::cout << "L'albero e' " << k << "-compreso." << std::endl;
     else
