@@ -53,6 +53,7 @@ void eliminaMaggioriK(PTree t, int k){
             iter->right=nullptr;
             temp=iter;
             transplant(t,iter,iter->left);
+            iter=iter->left;
             delete temp;
         }else{
             iter=iter->right;
