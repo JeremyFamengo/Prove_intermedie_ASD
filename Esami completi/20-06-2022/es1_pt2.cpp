@@ -21,28 +21,6 @@ struct Tree{
 
 typedef Tree* PTree;
 
-void printBT(const std::string& prefix,  PNode node, bool isLeft)
-{
-    if( node != nullptr )
-    {
-        std::cout << prefix;
-
-        std::cout << (isLeft ? "├──" : "└──" );
-
-        // print the value of the node
-        std::cout << node->key << std::endl;
-
-        // enter the next tree level - left and right branch
-        printBT( prefix + (isLeft ? "│   " : "    "), node->left, true);
-        printBT( prefix + (isLeft ? "│   " : "    "), node->right, false);
-    }
-}
-
-void printBT(const PTree t)
-{
-    printBT("", t->root, false);
-}
-
 void transplant(PTree t, PNode u, PNode v){
     if(!u->p){
         t->root=v;
@@ -71,6 +49,28 @@ void del_min_k_aux(PTree t, PNode n, int k){
 void del_min_k(PTree t, int k){
     if(!t)return;
     del_min_k_aux(t, t->root, k);
+}
+
+void printBT(const std::string& prefix,  PNode node, bool isLeft)
+{
+    if( node != nullptr )
+    {
+        std::cout << prefix;
+
+        std::cout << (isLeft ? "├──" : "└──" );
+
+        // print the value of the node
+        std::cout << node->key << std::endl;
+
+        // enter the next tree level - left and right branch
+        printBT( prefix + (isLeft ? "│   " : "    "), node->left, true);
+        printBT( prefix + (isLeft ? "│   " : "    "), node->right, false);
+    }
+}
+
+void printBT(const PTree t)
+{
+    printBT("", t->root, false);
 }
 
 int main() {
