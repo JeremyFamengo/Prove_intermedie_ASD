@@ -22,7 +22,7 @@ struct Tree{
 
 typedef Tree* PTree ;
 
-void tree_insert(PTree T, PNode z){ //O(h), h altezza dell'albero.
+void tree_insert(PTree T, PNode z){ //O(h), h altezza dell'albero nel caso medio e nel caso peggiore O(n), n numero di nodi
     PNode y = nullptr;
     PNode x= T->root;
     while(x!=nullptr){
@@ -47,8 +47,8 @@ void tree_insert(PTree T, PNode z){ //O(h), h altezza dell'albero.
 
 
 /**
- * caso medio: O(log n * h)
- * caso peggiore: O(nlog n)
+ * caso medio: O(h * n )
+ * caso peggiore: O(n^2)
  * n numero nodi
  * h altezza dell'albero
  * */
@@ -57,12 +57,8 @@ void scorri(PNode n, int from, int to, PTree res){
     if(from<=n->key && n->key<=to){
         tree_insert(res, new Node(n->key,nullptr));
     }
-    if(n->left && from<=n->left->key && n->left->key<=to){
-        scorri(n->left, from,to,res);
-    }
-    if(n->right && from<=n->right->key && n->right->key<=to){
-        scorri(n->right, from,to,res);
-    }
+    scorri(n->left, from,to,res);
+    scorri(n->right, from,to,res);
 }
 
 
