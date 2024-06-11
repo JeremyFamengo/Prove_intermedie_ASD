@@ -19,7 +19,7 @@ struct Tree{
 
 typedef Tree* PTree;
 
-int print_aux(PNode n){ //T(n)=O(n) per il teorema della sostituzione
+int print_aux(PNode n){ //T(n)=theta(n) per il teorema della sostituzione
     if(!n)return 0;
     int sumsx= print_aux(n->left);
     int sumdx= print_aux(n->right);
@@ -29,7 +29,7 @@ int print_aux(PNode n){ //T(n)=O(n) per il teorema della sostituzione
     return sumsx+sumdx+1;
 }
 
-void print(PTree t){ //T(n)=O(n) per print_aux
+void print(PTree t){ //T(n)=theta(n) per print_aux
     print_aux(t->root);
 }
 
